@@ -1,8 +1,9 @@
 public class Monument {
 
-    //atributos
+    //cada atriburo corresponde a una propiedad del json (monumentos)
     private String title;
     private String horario;
+    //tipo Geometry porque es un objeto anidado dentro de monuments
     private Geometry geometry;
 
     //constructor vacío necesario para Jackson

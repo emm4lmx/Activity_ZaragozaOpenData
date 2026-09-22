@@ -4,24 +4,25 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.PrimitiveIterator;
 
 public class MonumentApp {
         /**
          * @description: El programa tiene que
-         * Guardar la URL
-         * Crear HttpClient
-         * Crear HttpRequest con GET
-         * Enviar
-         * Recibir HttpResponse<String>
-         * Comprobar status code
-         * Capturar el body como texto
-         * Mostrar error claro si falla
+         * - Guardar la URL
+         * - Crear HttpClient
+         * - Crear HttpRequest con GET
+         * - Enviar
+         * - Recibir HttpResponse<String>
+         * - Comprobar status code
+         * - Capturar el body como texto
+         * - Mostrar error claro si falla
+         * @author: Emma Lamadrid
          */
-        private final String URL = "https://www.zaragoza.es/sede/servicio/monumento.json?rows=50&fl=title,horario,geometry";
 
+        private final String URL = "https://www.zaragoza.es/sede/servicio/monumento.json?rows=50&fl=title,horario,geometry";
         HttpClient client;
         private ObjectMapper mapper;
+
 
         public MonumentApp() {
             //inicio el objectmapper y el client
@@ -46,6 +47,8 @@ public class MonumentApp {
 
             if (response.statusCode() != 200) {
                 System.out.println("HTTP ERROR: " + response.statusCode());
+                //lanzo excepcion para que no siga ejecutando el codigo
+                throw new RuntimeException();
             }
             //saco el cuerpo del json
             String json = response.body();

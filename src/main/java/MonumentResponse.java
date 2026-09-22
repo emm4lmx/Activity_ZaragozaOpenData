@@ -7,10 +7,10 @@ public class MonumentResponse {
     private int totalCount;
     //indice desde que empieza
     private int start;
-    //numero de filas que tiene el documento
+    //numero de elementos que devuelve la petición
     private int rows;
     //array que tiene los monumentos
-    private List<Monument> monuments;
+    private List<Monument> result;
 
     //constructor vacío necesario para Jackson
     public MonumentResponse() {}
@@ -37,10 +37,10 @@ public class MonumentResponse {
         this.rows = rows;
     }
 
-    public List<Monument> getMonuments() {
-        return monuments;
+    public List<Monument> getResult() {
+        return result;
     }
-    public void setMonuments(List<Monument> monuments) {
-        this.monuments = monuments;
+    public void setResult(List<Monument> monuments) {
+        this.result = monuments;
     }
 }

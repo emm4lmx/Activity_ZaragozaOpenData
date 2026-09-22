@@ -3,9 +3,9 @@ import java.util.List;
 public class Geometry {
     //representa el objeto geometry de cada monument
 
-    //atributos de la clase (los del json)
+    //atributos de geometry (array) (los del json)
     private String type;
-    //porque coordinates es un array
+    //porque coordinates es un array de doubles
     private List<Double> coordinates;
 
     //constructor vacío necesario para Jackson
@@ -22,7 +22,7 @@ public class Geometry {
         this.coordinates = coordinates;
     }
 
-    //getters para la longitud y latitud
+    //getters para la longitud y latitud (encapsulacion dentro de la clase)
     public double getLongitud(){
         //devuelve la primera coordenada del array (longitud)
         return coordinates.get(0);
