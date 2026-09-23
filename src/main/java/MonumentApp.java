@@ -7,23 +7,25 @@ import java.net.http.HttpResponse;
 
 public class MonumentApp {
         /**
-         * @description: El programa tiene que
-         * - Guardar la URL
-         * - Crear HttpClient
-         * - Crear HttpRequest con GET
-         * - Enviar
-         * - Recibir HttpResponse<String>
-         * - Comprobar status code
-         * - Capturar el body como texto
-         * - Mostrar error claro si falla
-         * @author: Emma Lamadrid
+         * @description: this program has to:
+         * - store the URL
+         * - create HttpClient
+         * - create HttpRequest with GET
+         * - send the request
+         * - receive HttpResponse<String>
+         * - check status code
+         * - capture body as text
+         * - show the error if it fails
+         * @author: Emma Lamadrid Cruz
          */
 
         private final String URL = "https://www.zaragoza.es/sede/servicio/monumento.json?rows=50&fl=title,horario,geometry";
         HttpClient client;
         private ObjectMapper mapper;
 
-
+        /**
+         * initializes the ObjectMapper and the HttpClient.
+         */
         public MonumentApp() {
             //inicio el objectmapper y el client
             mapper = new ObjectMapper();
@@ -37,22 +39,29 @@ public class MonumentApp {
          * @description: método para obtener los monumentos
          * (las excepciones las manejo en el Main)
          */
+        /**
+         * @description: fetches the list of monuments from the API.
+         * exceptions are handled on the Main class
+         * @param rows the number of monuments to request
+         * @return the parsed MonumentResponse
+         * @throws Exception if the HTTP call fails or the JSON cannot be parsed
+         */
         public MonumentResponse obtenerMonumentos(int rows) throws Exception {
 
-            //construyo la petición GET
+            //build the get request GET
             HttpRequest request = HttpRequest.newBuilder(URI.create(URL)).build();
 
-            //envio y recibo la respuesta como String
+            //send the request and receive the response as a String
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() != 200) {
                 System.out.println("HTTP ERROR: " + response.statusCode());
-                //lanzo excepcion para que no siga ejecutando el codigo
+                //throw so that execution does not continue
                 throw new RuntimeException();
             }
-            //saco el cuerpo del json
+            //extract the JSON body
             String json = response.body();
-            //deserializo el json y lo mapeo como MonumentResponse
+            //deserialize the JSON and map it to a MonumentResponse
             //readValue(File, Class)
             return mapper.readValue(json, MonumentResponse.class);
         }

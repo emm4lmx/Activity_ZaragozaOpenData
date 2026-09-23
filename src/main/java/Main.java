@@ -1,17 +1,16 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //inicio la aplicacion
+        //start the application
         MonumentApp app = new MonumentApp();
 
         try {
-            //saco todos los datos del json (50)
+            //fetch all the data from the JSON (50 items)
             MonumentResponse response = app.obtenerMonumentos(50);
             List<Monument> monuments = response.getResult();
 
-            //cabecera
+            //header
             System.out.println("ZARAGOZA MONUMENTS");
             System.out.println("------------------------------------");
 
@@ -24,10 +23,10 @@ public class Main {
             Monument minLatitude = null;
 
             /**
-             * @description: recorre monumentos para mostrar información
+             * @description: goes through all the monuments to display their information
              */
             for (int i = 0; i < monuments.size(); i++) {
-                //objeto en la posicion i
+                //object at position i
                 Monument monument = monuments.get(i);
 
                 System.out.println((i+1) + "." + monument.getTitle());
@@ -39,13 +38,13 @@ public class Main {
                     System.out.println("coordinates: [" + monument.getGeometry().getLongitud() + ", " + latitud + "]");
 
 
-                    //comprobacion de maxima latitud y min lat (variables)
+                    //checks for the greatest latitude and store the corresponding monument
 
                     if (maxLatitude == null || latitud > maxLatitude.getGeometry().getLatitud()) {
                         maxLatitude = monument;
                     }
 
-                    //almaceno el objeto que tiene menor latitud en la veriable minLatitude
+                    //store the monument with the smallest latitude in "minLatitude"
                     if (minLatitude ==  null || latitud < minLatitude.getGeometry().getLatitud()){
                         minLatitude = monument;
                     }
@@ -61,10 +60,10 @@ public class Main {
             }
 
             /**
-             * @description: musestra un resumen final con los datos:
-             * numero de monumentos que contienen la palabra "museo" en su título
-             * museo con la mayor latitud
-             * museo con la menor latitud
+             * @description: prints the final summary:
+             * number of monuments that contain the word "museo" on its title
+             * museum with the greatest latitude
+             * museum with the smallest latitude
              */
             System.out.println("-----------------------------------");
             System.out.println("Monuments containing 'Museo' in the title: " + count);

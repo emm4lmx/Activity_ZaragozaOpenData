@@ -1,22 +1,29 @@
 import java.util.List;
 
+/**
+ * represents the top-level JSON response returned by the monuments API.
+ */
 public class MonumentResponse {
 
-    //atributos del json principal
-    //numero total de monumentos que tiene el API
+    //attributes of the main JSON object
+    //total number of monuments available in the API.
     private int totalCount;
-    //indice desde que empieza
-    private int start;
-    //numero de elementos que devuelve la petición
-    private int rows;
-    //array que tiene los monumentos
 
+    //index at which the current page starts.
+    private int start;
+
+    //number of elements returned by this request
+    private int rows;
+
+    //list containing the monuments for this page
     private List<Monument> result;
 
-    //constructor vacío necesario para Jackson
+    /**
+     * empty constructor required by Jackson for deserialization.
+     */
     public MonumentResponse() {}
 
-    //getters y setters
+    //getters and setters
     public int getTotalCount() {
         return totalCount;
     }

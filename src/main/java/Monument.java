@@ -1,15 +1,23 @@
+/**
+ * represents a single monument as returned by the API.
+ * each field corresponds to a property of a monument in the JSON.
+ */
+
 public class Monument {
 
-    //cada atriburo corresponde a una propiedad del json (monumentos)
+    //each field corresponds to a JSON property of a monument    ç
     private String title;
     private String horario;
-    //tipo Geometry porque es un objeto anidado dentro de monuments
+
+    //typed as Geometry because it is a nested object inside "monuments"    ç
     private Geometry geometry;
 
-    //constructor vacío necesario para Jackson
+    /**
+     *empty constructor required by Jackson for deserialization.
+     */
     public Monument(){}
 
-    //getters y setters
+    //getters and setters
     public String getTitle() {
         return title;
     }
