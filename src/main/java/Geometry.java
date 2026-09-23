@@ -31,5 +31,4 @@ public class Geometry {
         //devuelve la sengunda coordenada del array (latitud)
         return coordinates.get(1);
     }
-
 }

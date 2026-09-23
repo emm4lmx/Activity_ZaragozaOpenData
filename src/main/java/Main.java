@@ -11,7 +11,7 @@ public class Main {
             MonumentResponse response = app.obtenerMonumentos(50);
             List<Monument> monuments = response.getResult();
 
-            //cabezera
+            //cabecera
             System.out.println("ZARAGOZA MONUMENTS");
             System.out.println("------------------------------------");
 
@@ -23,6 +23,9 @@ public class Main {
             Monument maxLatitude = null;
             Monument minLatitude = null;
 
+            /**
+             * @description: recorre monumentos para mostrar información
+             */
             for (int i = 0; i < monuments.size(); i++) {
                 //objeto en la posicion i
                 Monument monument = monuments.get(i);
@@ -32,23 +35,44 @@ public class Main {
                 System.out.println("opening information: " + monument.getHorario());
 
                 if (monument.getGeometry() != null && monument.getGeometry().getCoordinates() != null) {
-                    System.out.println("coordinates: [" + monument.getGeometry().getLongitud() + ", " + monument.getGeometry().getLatitud() + "]");
+                    double latitud = monument.getGeometry().getLatitud();
+                    System.out.println("coordinates: [" + monument.getGeometry().getLongitud() + ", " + latitud + "]");
 
 
                     //comprobacion de maxima latitud y min lat (variables)
-                    if (1==1) {
 
+                    if (maxLatitude == null || latitud > maxLatitude.getGeometry().getLatitud()) {
+                        maxLatitude = monument;
                     }
 
+                    //almaceno el objeto que tiene menor latitud en la veriable minLatitude
+                    if (minLatitude ==  null || latitud < minLatitude.getGeometry().getLatitud()){
+                        minLatitude = monument;
+                    }
 
                 } else {
-
+                    System.out.println("Coordenadas introducidas no válidas.");
                 }
 
-
-
-
+                if (monument.getTitle().toLowerCase().contains("museo")){
+                    count++;
+                }
+                System.out.println();
             }
+
+            /**
+             * @description: musestra un resumen final con los datos:
+             * numero de monumentos que contienen la palabra "museo" en su título
+             * museo con la mayor latitud
+             * museo con la menor latitud
+             */
+            System.out.println("-----------------------------------");
+            System.out.println("Monuments containing 'Museo' in the title: " + count);
+            System.out.println();
+            System.out.println("Greatest second coordinate: \n>>>> Monument: " + maxLatitude.getTitle() + " --> Latitud: " + maxLatitude.getGeometry().getLatitud());
+            System.out.println("Smallest second coordinate: \n>>>> " + minLatitude.getTitle() + " --> Latitud: " + minLatitude.getGeometry().getLatitud());
+
+
         } catch (Exception e) {
             System.out.println("ERROR " + e.getMessage());
             e.printStackTrace();

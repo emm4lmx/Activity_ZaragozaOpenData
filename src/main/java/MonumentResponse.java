@@ -10,6 +10,7 @@ public class MonumentResponse {
     //numero de elementos que devuelve la petición
     private int rows;
     //array que tiene los monumentos
+
     private List<Monument> result;
 
     //constructor vacío necesario para Jackson

@@ -31,11 +31,11 @@ public class MonumentApp {
         }
 
         /**
-         *
          * @param rows
          * @return MonumentResponse
          * @throws Exception
-         * @description: las excepciones las manejo en el Main
+         * @description: método para obtener los monumentos
+         * (las excepciones las manejo en el Main)
          */
         public MonumentResponse obtenerMonumentos(int rows) throws Exception {
 

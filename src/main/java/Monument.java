@@ -28,9 +28,4 @@ public class Monument {
     public void setGeometry(Geometry geometry) {
         this.geometry = geometry;
     }
-
-
-
-
-
 }
